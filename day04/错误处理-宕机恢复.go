@@ -22,3 +22,6 @@ func main(){
 	test()
 	fmt.Println("程序结束")
 }
+/* 由运行结果可以看出，通过recover函数可以获取panic信息，后面的程序可以正常
+按顺序执行
+*/

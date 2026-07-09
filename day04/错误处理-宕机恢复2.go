@@ -30,3 +30,7 @@ func main(){
 	first()
 	fmt.Println("程序结束")
 }
+
+/* 由运行结果可以看出，在third函数中触发宕机，程序执行second函数中的
+defer语句，在执行完该语句后退出second函数，并返回调用该函数的first函数
+继续执行*/
