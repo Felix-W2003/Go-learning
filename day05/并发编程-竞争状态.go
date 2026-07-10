@@ -17,10 +17,10 @@ var (
 )
 
 func main(){
-	wg.Add(2)
-	go count(1)
-	go count(2)
-	wg.Wait()
+	wg.Add(2)		//设置并发程序的等待数量为2
+	go count(1)		//启动第一个并发程序
+	go count(2)		//启动第二个并发程序
+	wg.Wait()		//并发程序启动后，主程序进入阻塞 等待状态
 	fmt.Println(counter)
 }
 
