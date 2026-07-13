@@ -1,0 +1,69 @@
+{{ define "default/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div>this default/index.htmls</div>
+    <h2>{{.title}}</h2>
+    {{$t := .title}}
+    <h4>
+        {{$t}}
+    </h4>
+
+    {{if gt .score 60}}
+    <p>及格</p>
+    {{else}}
+     <p>不及格</p>
+    {{end}}
+
+     {{if gt .score 90}}
+    <p>优秀</p>
+    {{else if gt .score 80}}
+     <p>良好</p>
+    {{else if gt .score 600}}
+     <p>及格</p>
+    {{else}}
+    <p>不及格</p>
+    {{end}}
+
+    <!-- 循环遍历数据 -->
+
+    <ul>
+        {{range $key,$value := .hobby}}
+             <li>
+                {{$key}}----{{$value}}
+        </li>
+        {{end}}
+       
+    </ul>
+
+     <ul>
+        {{range $key,$value := .newsList}}
+             <li>
+                {{$key}}----{{$value.Title}}----{{$value.Content}}
+        </li>
+        {{end}}
+       
+    </ul>
+
+
+    <!-- with 解构结构体 -->
+
+    <p>{{.news.Title}}</p>
+    <p>{{.news.Content}}</p>
+
+
+    <p>{{with .news}}
+        {{.Title}}
+        {{.Content}}
+        {{end}}
+    </p>
+    
+</body>
+</html>
+
+{{ end }}
