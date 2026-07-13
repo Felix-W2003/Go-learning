@@ -4,28 +4,35 @@
 */
 
 package main
+
 import (
 	"fmt"
 	"time"
 )
 
-func getOff(){
+func getOff() {
 	//循环5次
-	for i:=5;i>0;i--{
-		fmt.Println("还有",i,"位乘客下车")
+	for i := 5; i > 0; i-- {
+		fmt.Println("还有", i, "位乘客下车")
 		//延时1s
-		time.Sleep(1*time.Second)
+		time.Sleep(1 * time.Second)
 	}
 }
 
-func main(){
+func main() {
 
 	//执行并发程序
 	go getOff()
 	//循环5次
-	for i:=1;i<6;i++{
-		fmt.Println("第",i,"位乘客上车")
-		time.Sleep(1*time.Second)
+	for i := 1; i < 6; i++ {
+		fmt.Println("第", i, "位乘客上车")
+		time.Sleep(1 * time.Second)
 	}
 
 }
+
+/*首先为main()函数创建一个goroutine，然后使用go关键字为getOff()函数创建
+另一个goroutine;Go语言自动对这两个goroutine进行调度，以实现并发过程
+当使用go关键字创建goroutine时，因为忽略被调用函数的返回值，所以只考虑是否
+需要为被调用函数设置参数
+*/

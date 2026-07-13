@@ -14,19 +14,20 @@
 
 */
 
-
 package main
+
 import "fmt"
 
-func main(){
-	chel := make(chan int,6)//创建有缓冲的通道chel
+func main() {
+	chel := make(chan int, 6) //创建有缓冲的通道chel
 	//打印有缓冲的通道内部存储数据的数量
-	fmt.Println("有缓冲的通道内部存储数据的数量:",len(chel))
+	fmt.Println("有缓冲的通道内部存储数据的数量:", len(chel))
 	//使用有缓冲的通道发送数据
 	chel <- 0
 	chel <- 1
 	chel <- 2
 	chel <- 3
 	//再次打印有缓冲的通道内部存储数据的数量
-	fmt.Println("有缓冲的通道内部存储数据的数量:",len(chel))
+	fmt.Println("有缓冲的通道内部存储数据的数量:", len(chel))
+
 }
