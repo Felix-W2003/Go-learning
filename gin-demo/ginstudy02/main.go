@@ -13,6 +13,14 @@ func main() {
 		ctx.HTML(http.StatusOK, "default/index.html", gin.H{
 			"title": "首页",
 		})
+		username := ctx.Query("username")
+		age := ctx.Query("age")
+		page := ctx.DefaultQuery("page", "1")
+		ctx.JSON(http.StatusOK, gin.H{
+			"username": username,
+			"age":      age,
+			"page":     page,
+		})
 	})
 
 	r.GET("/news", func(ctx *gin.Context) {
