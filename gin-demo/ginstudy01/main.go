@@ -1,7 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"text/template"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,9 +14,25 @@ type Article struct {
 	Content string
 }
 
+func UixToTime(timestamp int) string {
+	t := time.Unix(int64(timestamp), 0)
+	return t.Format("2006-01-02 15:04:05")
+}
+
+func Println(str1 string, str2 string) string {
+	fmt.Println(str1, str2)
+	return str1 + str2
+}
 func main() {
 	r := gin.Default()
+
+	r.SetFuncMap(template.FuncMap{
+		"UnixToTime": UixToTime,
+		"Println":    Println,
+	})
+
 	r.LoadHTMLGlob("templates/**/*")
+	r.Static("/static", "./static")
 	r.GET("/", func(ctx *gin.Context) {
 
 		ctx.HTML(http.StatusOK, "default/index.html", gin.H{
@@ -35,6 +54,9 @@ func main() {
 				Title:   "aaaa",
 				Content: "bbbb",
 			},
+			"date": 1783992427,
+			"s1":   "nihao",
+			"s2":   "gin",
 		})
 	})
 

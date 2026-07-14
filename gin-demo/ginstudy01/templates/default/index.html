@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/../../static/css/base.css">
 </head>
 <body>
+
+    {{template "public/page_header.html" .}}
+    <img src="/../../static/images/a1.jpg" alt="我是彭于晏">
      <div>this default/index.htmls</div>
     <h2>{{.title}}</h2>
     {{$t := .title}}
@@ -63,6 +67,19 @@
         {{end}}
     </p>
     
+    <p>
+        {{len .title}}
+        {{len .hobby}}
+    </p>
+
+    <p>
+        {{UnixToTime .date}}
+    </p>
+    
+    <p>
+        {{Println .title .s2}}
+    </p>
+        {{template "public/page_footer.html" .}}
 </body>
 </html>
 

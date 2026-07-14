@@ -1,0 +1,18 @@
+h1{
+        background-color: rgb(24, 27, 130);
+        color: #fff;
+        text-align: center;
+    }
+
+ #public_footer{
+        background-color: rgb(255, 0, 0);
+        color: #fff;
+        text-align: center;
+    }
+
+
+img{
+    height: 100px;
+    width: 60px;
+    
+}
