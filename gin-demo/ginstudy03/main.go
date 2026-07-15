@@ -59,5 +59,5 @@ func main() {
 	// 		ctx.String(200, "新闻列表")
 	// 	})
 	// }
-	r.Run()
+	r.Run(":80")
 }
