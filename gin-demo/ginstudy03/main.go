@@ -1,16 +1,21 @@
 package main
 
 import (
+	"gin-demo/ginstudy03/models"
 	"gin-demo/ginstudy03/routers"
+	"text/template"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
-
+	r.SetFuncMap(template.FuncMap{
+		"UnixToTime": models.UixToTime,
+	})
 	r.LoadHTMLGlob("templates/**/*")
 	r.Static("/static", "./static")
+	r.Use()
 	routers.AdminRoutersInit(r)
 	routers.ApiRoutersInit(r)
 	routers.DefaultRoutersInit(r)

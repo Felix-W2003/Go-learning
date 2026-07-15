@@ -1,10 +1,23 @@
 package admin
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+)
 
 type IndexController struct {
 }
 
 func (con IndexController) Index(c *gin.Context) {
-	c.String(200, "首页")
+	username, _ := c.Get("username")
+	fmt.Println(username)
+	//类型断言
+	v, ok := username.(string)
+	if ok == true {
+		c.String(200, "首页--"+v)
+	} else {
+		c.String(200, "获取用户失败")
+	}
+
 }
