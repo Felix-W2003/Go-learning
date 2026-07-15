@@ -1,18 +1,16 @@
 package routers
 
-import "github.com/gin-gonic/gin"
+import (
+	"gin-demo/ginstudy03/controllers/api"
+
+	"github.com/gin-gonic/gin"
+)
 
 func ApiRoutersInit(r *gin.Engine) {
 	apiRouters := r.Group("/api")
 	{
-		apiRouters.GET("/", func(ctx *gin.Context) {
-			ctx.String(200, "我是一个api接口")
-		})
-		apiRouters.GET("/userlist", func(ctx *gin.Context) {
-			ctx.String(200, "我是一个api接口--userlist")
-		})
-		apiRouters.GET("/plist", func(ctx *gin.Context) {
-			ctx.String(200, "我是一个api接口--plist")
-		})
+		apiRouters.GET("/", api.ApiController{}.Index)
+		apiRouters.GET("/userlist", api.ApiController{}.Userlist)
+		apiRouters.GET("/plist", api.ApiController{}.Plist)
 	}
 }
