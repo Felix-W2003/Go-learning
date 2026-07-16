@@ -1,28 +1,29 @@
 package main
+
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 )
 
-type Person struct{
+type Person struct {
 	Name string
-	Age  int 
+	Age  int
 	Sex  string
 }
 
-func Marshal(){
+func Marshal() {
 	p := Person{
-		Name : "David",
-		Age : 26,
-		Sex : "Male",
+		Name: "David",
+		Age:  26,
+		Sex:  "Male",
 	}
 
-	b,_ := json.Marshal(p)
-	fmt.Printf("b:%v",string(b))
+	b, _ := json.Marshal(p)
+	fmt.Printf("b:%v", string(b))
 
-	fmt.Printf("b:%T",b)
+	fmt.Printf("b:%T", b)
 }
 
-func main(){
+func main() {
 	Marshal()
 }

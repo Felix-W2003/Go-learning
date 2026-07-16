@@ -1,6 +1,8 @@
 package admin
 
 import (
+	"fmt"
+	"gin-demo/ginstudy03/models"
 	"log"
 	"net/http"
 	"path"
@@ -14,11 +16,36 @@ type UserController struct {
 
 func (con UserController) Index(c *gin.Context) {
 	//	c.String(200, "用户列表")
-	con.success(c)
+	//con.success(c)
+
+	//查询数据库
+	// userList := []models.User{}
+	// models.DB.Find(&userList)
+	// c.JSON(http.StatusOK, gin.H{
+	// 	"result": userList,
+	// })
+
+	//查询age>20的用户
+	userList := []models.User{}
+	models.DB.Where("age>20").Find(&userList)
+	c.JSON(http.StatusOK, gin.H{
+		"result": userList,
+	})
 }
 
 func (con UserController) Add(c *gin.Context) {
-	c.HTML(http.StatusOK, "admin/useradd.html", gin.H{})
+	// c.HTML(http.StatusOK, "admin/useradd.html", gin.H{})
+	user := models.User{
+		Id:       4,
+		Username: "许立军",
+		Age:      22,
+		Email:    "12123@qq.com",
+		AddTime:  1000002,
+	}
+
+	models.DB.Create(&user)
+	fmt.Println(user)
+	c.String(200, "success add")
 }
 
 func (con UserController) Edit(c *gin.Context) {

@@ -5,6 +5,8 @@ import (
 	"gin-demo/ginstudy03/routers"
 	"text/template"
 
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,6 +18,14 @@ func main() {
 	r.LoadHTMLGlob("templates/**/*")
 	r.Static("/static", "./static")
 	r.Use()
+	//配置session中间件
+	//创建基于cookie的存储引擎，secret123参数用于加密的密钥
+	//store := cookie.NewStore([]byte("secret123"))
+
+	//创建基于redis的存储引擎
+	store, _ := redis.NewStore(10, "tcp", "localhost:6379", "", "", []byte("secret"))
+	r.Use(sessions.Sessions("mysession", store))
+
 	routers.AdminRoutersInit(r)
 	routers.ApiRoutersInit(r)
 	routers.DefaultRoutersInit(r)
