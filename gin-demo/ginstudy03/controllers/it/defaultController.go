@@ -1,8 +1,6 @@
 package it
 
 import (
-	"fmt"
-	"gin-demo/ginstudy03/models"
 	"net/http"
 
 	"github.com/gin-contrib/sessions"
@@ -14,14 +12,14 @@ type DefaultController struct {
 
 func (con DefaultController) Index(ctx *gin.Context) {
 
-	session := sessions.Default(ctx)
-	//设置session过期时间
-	session.Options(sessions.Options{
-		MaxAge: 3600 * 6,
-	})
-	session.Set("sessionusername", "张三123")
-	session.Save()
-	fmt.Println(models.UixToTime(1784083129))
+	// session := sessions.Default(ctx)
+	// //设置session过期时间
+	// session.Options(sessions.Options{
+	// 	MaxAge: 3600 * 6,
+	// })
+	// session.Set("sessionusername", "张三123")
+	// session.Save()
+	// fmt.Println(models.UixToTime(1784083129))
 
 	ctx.SetCookie("username", "张三", 3600, "/", "a.wf.com", false, false)
 	ctx.SetCookie("hobby", "吃饭、睡觉", 5, "/", "localhost", false, false)
