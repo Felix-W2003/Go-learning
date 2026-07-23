@@ -49,7 +49,7 @@ func strStr(haystack string, needle string) int {
 
 func main() {
 	str1 := "sadbutsad"
-	str2 := "sad"
+	str2 := "but"
 	fmt.Println(strStr(str1, str2)) // 预期0
 
 	str3 := "leetcode"
